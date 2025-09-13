@@ -1,0 +1,28 @@
+{
+    "widgetOptions": [
+        {
+            "category": "CSPM",
+            "widgets": [
+                { "id": "cspm-widget-1", "name": "Cloud Accounts", "text": "2 Total" },
+                { "id": "cspm-widget-2", "name": "Cloud Account Risk Assessment", "text": "9659 Total" },
+                { "id": "cspm-widget-3", "name": "Resource Compliance", "text": "Data loading..." }
+            ]
+        },
+        {
+            "category": "CWPP",
+            "widgets": [
+                { "id": "cwpp-widget-1", "name": "Top 5 Namespace Specific Alerts", "text": "No Graph data available!" },
+                { "id": "cwpp-widget-2", "name": "Workload Alerts", "text": "No Graph data available!" },
+                { "id": "cwpp-widget-3", "name": "Host Security", "text": "Data loading..." }
+            ]
+        },
+        {
+            "category": "Image",
+            "widgets": [
+                { "id": "img-widget-1", "name": "Image Risk Assessment", "text": "1470 Total Vulnerabilities" },
+                { "id": "img-widget-2", "name": "Image Security Issues", "text": "2 Total Images" },
+                { "id": "img-widget-3", "name": "Registry Vulnerabilities", "text": "Data loading..." }
+            ]
+        }
+    ]
+}
