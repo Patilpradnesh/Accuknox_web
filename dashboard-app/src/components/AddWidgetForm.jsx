@@ -13,11 +13,11 @@ const AddWidgetPanel = ({ closePanel }) => {
   );
   const [selectedWidgets, setSelectedWidgets] = useState({});
 
-  const TAB_TO_CATEGORY_ID = {
-    CSPM: "cat-cspm",
-    CWPP: "cat-cwpp",
-    Image: "cat-registry",
-  };
+  // Dynamically create a mapping for category names to IDs
+  const TAB_TO_CATEGORY_ID = dashboardCategories.reduce((acc, cat) => {
+    acc[cat.name.split(' ')[0]] = cat.id;
+    return acc;
+  }, {});
 
   const handleCheckboxChange = (widget) => {
     setSelectedWidgets((prev) => {
@@ -47,14 +47,12 @@ const AddWidgetPanel = ({ closePanel }) => {
   };
 
   return (
-    <div className="flex flex-col h-full bg-white">
+    <div className="d-flex flex-column h-100 bg-white text-dark">
       {/* Header */}
-      <div className="px-6 py-4 border-b border-gray-200 bg-gray-50">
-        <div className="flex justify-between items-center">
-          <h2 className="text-lg font-semibold text-black">Add Widget</h2>
-          <button onClick={closePanel} className=" text-xl p-1">
-            ×
-          </button>
+      <div className="px-4 py-3 border-bottom bg-light">
+        <div className="d-flex justify-content-between align-items-center">
+          <h2 className="h6 fw-semibold mb-0">Add Widget</h2>
+          <button onClick={closePanel} className="btn btn-close" aria-label="Close" />
         </div>
       </div>
 
@@ -64,10 +62,10 @@ const AddWidgetPanel = ({ closePanel }) => {
           <button
             key={option.category}
             onClick={() => setActiveTab(option.category)}
-            className={`flex-1 px-4 py-3 text-sm font-medium ${
+            className={`flex-1 px-4 py-3 text-sm font-medium transition-colors duration-200 ${
               activeTab === option.category
-                ? "text-black bg-white border-b-2 border-black"
-                : "text-gray-600 hover:text-black hover:bg-gray-100"
+                ? "text-gray-900 bg-white border-b-2 border-indigo-600"
+                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
             }`}
           >
             {option.category}
@@ -76,7 +74,7 @@ const AddWidgetPanel = ({ closePanel }) => {
       </div>
 
       {/* Widget List */}
-      <div className="flex-1 overflow-y-auto p-6">
+      <div className="flex-1 overflow-y-auto p-6 bg-white">
         <div className="space-y-2">
           {availableWidgetsData.widgetOptions
             .find((option) => option.category === activeTab)
@@ -92,9 +90,9 @@ const AddWidgetPanel = ({ closePanel }) => {
                   onChange={() =>
                     handleCheckboxChange({ ...widget, category: activeTab })
                   }
-                  className="h-4 w-4 text-black border-gray-300 rounded"
+                  className="h-4 w-4 text-indigo-600 border-gray-300 rounded focus:ring-indigo-500"
                 />
-                <span className="ml-3 text-sm text-black">{widget.name}</span>
+                <span className="ml-3 text-sm text-gray-900">{widget.name}</span>
               </label>
             ))}
         </div>
@@ -105,13 +103,18 @@ const AddWidgetPanel = ({ closePanel }) => {
         <div className="flex justify-end space-x-3">
           <button
             onClick={closePanel}
-            className="px-4 py-2 text-sm font-medium text-white bg-white border border-gray-300 rounded hover:bg-gray-100"
+            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-200"
           >
             Cancel
           </button>
           <button
             onClick={handleConfirm}
-            className="px-4 py-2 text-sm font-medium text-white bg-gray-200 border border-gray-300 rounded hover:bg-gray-300"
+            disabled={Object.keys(selectedWidgets).length === 0}
+            className={`px-4 py-2 text-sm font-medium rounded transition-colors duration-200 ${
+              Object.keys(selectedWidgets).length === 0
+                ? 'bg-indigo-300 text-white cursor-not-allowed'
+                : 'bg-indigo-600 text-white hover:bg-indigo-700'
+            }`}
           >
             Confirm
           </button>

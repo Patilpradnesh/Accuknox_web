@@ -9,28 +9,30 @@ const Category = ({ category, searchTerm }) => {
     );
 
     return (
-        <div className="p-6">
+        <div className="p-4">
             {/* Category Header */}
-            <div className="mb-6">
-                <h3 className="text-xl font-bold text-slate-900">{category.name}</h3>
+            <div className="mb-4">
+                <h3 className="h4 fw-bold text-dark">{category.name}</h3>
             </div>
 
             {/* Widgets Grid */}
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="row g-4">
                 {filteredWidgets.map(widget => (
-                    <Widget key={widget.id} widget={widget} categoryId={category.id} />
+                    <div className="col-12 col-md-6 col-lg-4" key={widget.id}>
+                        <Widget widget={widget} categoryId={category.id} />
+                    </div>
                 ))}
             </div>
 
             {/* Empty State */}
             {filteredWidgets.length === 0 && searchTerm.length > 0 && (
-                <div className="text-center py-12">
-                    <div className="text-slate-400 mb-2">
-                        <svg className="w-12 h-12 mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <div className="text-center py-5">
+                    <div className="text-muted mb-2">
+                        <svg width="48" height="48" className="mx-auto" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9.172 16.172a4 4 0 015.656 0M9 12h6m-6-4h6m2 5.291A7.962 7.962 0 0112 15c-2.34 0-4.29-.88-5.812-2.34" />
                         </svg>
                     </div>
-                    <p className="text-slate-600">No widgets found matching your search.</p>
+                    <p className="text-secondary">No widgets found matching your search.</p>
                 </div>
             )}
         </div>

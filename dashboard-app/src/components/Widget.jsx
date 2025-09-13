@@ -10,24 +10,24 @@ const Widget = ({ widget, categoryId }) => {
     };
 
     return (
-        <div className="bg-white border border-slate-200 rounded-lg p-6 hover:shadow-md transition-shadow duration-200 group">
+        <div className="bg-white border rounded-3 p-4 shadow-sm widget-container position-relative h-100 d-flex flex-column justify-content-between">
             {/* Header */}
-            <div className="flex justify-between items-start mb-4">
-                <h4 className="text-lg font-semibold text-slate-900">{widget.name}</h4>
+            <div className="d-flex justify-content-between align-items-start mb-3">
+                <h4 className="h5 fw-semibold text-dark mb-0">{widget.name}</h4>
                 <button
                     onClick={handleRemove}
-                    className="text-slate-400 hover:text-red-500 p-1 rounded-full hover:bg-red-50 transition-colors duration-200 opacity-0 group-hover:opacity-100"
+                    className="btn btn-link p-0 text-danger"
                     aria-label="Remove widget"
                 >
-                    <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                     </svg>
                 </button>
             </div>
 
             {/* Content */}
-            <div className="flex items-center justify-center h-32 bg-slate-50 rounded-lg">
-                <p className="text-slate-600 text-center">{widget.text || "No Graph data available!"}</p>
+            <div className="d-flex align-items-center justify-content-center bg-light rounded-3" style={{ height: '8rem' }}>
+                <p className="text-secondary text-center mb-0">{widget.text || "No Graph data available!"}</p>
             </div>
         </div>
     );
