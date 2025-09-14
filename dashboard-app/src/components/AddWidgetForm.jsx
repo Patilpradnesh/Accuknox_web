@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { addWidget } from "../redux/dashboardSlice";
 import availableWidgetsData from "../data/availableWidgets.json";
+import {toast} from 'react-toastify';
 
 const AddWidgetPanel = ({ closePanel }) => {
   const dispatch = useDispatch();
@@ -32,6 +33,7 @@ const AddWidgetPanel = ({ closePanel }) => {
   };
 
   const handleConfirm = () => {
+    let addedCount = 0;
     Object.values(selectedWidgets).forEach((widget) => {
       const targetCategoryId = TAB_TO_CATEGORY_ID[widget.category];
       if (targetCategoryId) {
@@ -41,8 +43,12 @@ const AddWidgetPanel = ({ closePanel }) => {
             widget: { ...widget, id: `${widget.id}-${Date.now()}` },
           })
         );
+        addedCount++;
       }
     });
+    if (addedCount > 0) {
+      toast.success(`${addedCount} widgets added successfully!`);
+    }
     closePanel();
   };
 
@@ -103,17 +109,17 @@ const AddWidgetPanel = ({ closePanel }) => {
         <div className="flex justify-end space-x-3">
           <button
             onClick={closePanel}
-            className="px-4 py-2 text-sm font-medium text-gray-700 bg-white border border-gray-300 rounded hover:bg-gray-100 transition-colors duration-200"
+            className="px-4 py-2 m- text-sm font-medium text-white bg-black border border-gray-300 rounded hover:bg-gray-900 transition-colors duration-2"
           >
             Cancel
           </button>
           <button
             onClick={handleConfirm}
             disabled={Object.keys(selectedWidgets).length === 0}
-            className={`px-4 py-2 text-sm font-medium rounded transition-colors duration-200 ${
+            className={`px-4 py-2 m-1 text-sm font-medium rounded transition-colors duration-2 ${
               Object.keys(selectedWidgets).length === 0
-                ? 'bg-indigo-300 text-white cursor-not-allowed'
-                : 'bg-indigo-600 text-white hover:bg-indigo-700'
+                ? 'bg-indigo-300 text-b cursor-not-allowed text-black'
+                : 'bg-black text-white hover:bg-indigo-700'
             }`}
           >
             Confirm

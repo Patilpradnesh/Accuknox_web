@@ -1,12 +1,16 @@
+
 import React from 'react';
 import { useDispatch } from 'react-redux';
 import { removeWidget } from '../redux/dashboardSlice';
+import { toast } from 'react-toastify';
 
 const Widget = ({ widget, categoryId }) => {
     const dispatch = useDispatch();
 
     const handleRemove = () => {
         dispatch(removeWidget({ categoryId, widgetId: widget.id }));
+        toast.dismiss(); // Remove any existing toasts
+        toast.info('Widget removed!');
     };
 
     return (

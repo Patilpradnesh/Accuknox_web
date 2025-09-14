@@ -34,7 +34,8 @@ const Dashboard = () => {
                     <div className="d-flex align-items-center gap-3">
                         <button
                             onClick={() => setIsPanelOpen(true)}
-                            className="btn btn-primary d-inline-flex align-items-center"
+                            className="btn btn-dark btn-lg d-inline-flex align-items-center w-100"
+                            style={{ minWidth: '150px' }}
                         >
                             
                             Add Widget

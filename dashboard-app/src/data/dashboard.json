@@ -28,9 +28,15 @@
             ]
         },
         {
-            "id": "cat-registry",
-            "name": "Registry Scan",
-            "widgets": []
+            "id": "cat-Image",
+            "name": "Image",
+            "widgets": [
+                {
+                    "id":"img-widget-0",
+                    "name":"Top 5 Images Specific ",
+                    "text":"No Images data available!"
+                }
+            ]
         }
     ]
 }

@@ -1,5 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import dashboardData from '../data/dashboard.json';
+import { toast } from 'react-toastify';
 
 const initialState = {
     categories: dashboardData.categories,
@@ -15,6 +16,7 @@ const dashboardSlice = createSlice({
             const category = state.categories.find(cat => cat.id === categoryId);
             if (category) {
                 category.widgets.push(widget);
+               
             }
         },
         removeWidget: (state, action) => {
@@ -22,6 +24,7 @@ const dashboardSlice = createSlice({
             const category = state.categories.find(cat => cat.id === categoryId);
             if (category) {
                 category.widgets = category.widgets.filter(w => w.id !== widgetId);
+               
             }
         },
         setSearchTerm: (state, action) => {
