@@ -63,16 +63,13 @@ const AddWidgetPanel = ({ closePanel }) => {
       </div>
 
       {/* Tabs */}
-      <div className="flex border-b border-gray-200 bg-gray-50">
+      <div className="d-flex border-bottom bg-light mb-3" style={{ gap: '12px' }}>
         {availableWidgetsData.widgetOptions.map((option) => (
           <button
             key={option.category}
             onClick={() => setActiveTab(option.category)}
-            className={`flex-1 px-4 py-3 text-sm font-medium transition-colors duration-200 ${
-              activeTab === option.category
-                ? "text-gray-900 bg-white border-b-2 border-indigo-600"
-                : "text-gray-600 hover:text-gray-900 hover:bg-gray-100"
-            }`}
+            className={`flex-grow-1 btn btn-outline-dark ${activeTab === option.category ? 'active' : ''}`}
+            style={{ minWidth: '100px' }}
           >
             {option.category}
           </button>
